@@ -35,20 +35,14 @@ const getUsers = (request, response) => {
 // Send the head for getUser request
 const getUsersMeta = (request, response) => respondJSONMeta(request, response, 200);
 
-// Send back 404 error
-const notReal = (request, response) => notFound(request, response);
-
-// Send back 404 head
-const notRealMeta = (request, response) => respondJSONMeta(request, response, 404);
-
 // Add user to users object
 const addUser = (request, response, body) => {
   const resObj = {
-    message: 'User requires both name and age.',
+    message: 'User requires name.',
   };
 
   // Check for required name and age
-  if (!body.name || !body.age) {
+  if (!body.name) {
     resObj.id = 'addUserMissingParams';
     return respondJSON(request, response, 400, resObj);
   }
@@ -64,7 +58,19 @@ const addUser = (request, response, body) => {
 
   // Set user fields
   users[body.name].name = body.name;
-  users[body.name].age = body.age;
+
+  // Check for each food field
+  if (body.dislikes) { 
+    let dislikesArray = body.dislikes.split(',')
+    users[body.name].dislikes = dislikesArray;
+  }
+    
+  if (body.mains)
+    users[body.name].mains = body.mains;
+  if (body.sweets)
+    users[body.name].sweets = body.sweets;
+  if (body.drinks)
+    users[body.name].sweets = body.drinks;
 
   // Send created response
   if (resCode === 201) {
@@ -79,8 +85,6 @@ const addUser = (request, response, body) => {
 module.exports = {
   getUsers,
   getUsersMeta,
-  notReal,
-  notRealMeta,
   addUser,
   notFound,
 };

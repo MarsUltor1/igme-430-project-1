@@ -12,12 +12,10 @@ const urlStruct = {
     '/style.css': htmlHandler.getCSS,
     '/bundle.js': htmlHandler.getBundle,
     '/getUsers': jsonHandler.getUsers,
-    '/notReal': jsonHandler.notReal,
     notFound: jsonHandler.notFound,
   },
   HEAD: {
     '/getUsers': jsonHandler.getUsersMeta,
-    '/notReal': jsonHandler.notRealMeta,
     notFound: jsonHandler.notFound,
   },
   POST: {
