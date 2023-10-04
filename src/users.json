@@ -1,0 +1,75 @@
+{
+    "Laura": {
+        "Dislikes": [
+            "Whipped Cream",
+            "Avocados",
+            "Tequila",
+            "Beer",
+            "Whiskey",
+            "Cotton Candy",
+            "Artificial Strawberry & Grape",
+            "Mussles/Oysters",
+            "Organ Meat",
+            "Extra Spicy",
+            "Anise"
+        ],
+        "Favorite Mains": [
+            "Falafer & Humus",
+            "Saag Paneer",
+            "Carnitas"
+        ],
+        "Favorite Sweets": [
+            "Cheesecake",
+            "Ice Cream & Chocolate Chip Cookies",
+            "Baklava",
+            "Gulab Jamun"
+        ],
+        "Favorite Drinks": [
+            "Malibu Rum & Pineapple Juice",
+            "UV Blue & Lemonade",
+            "Caramel Vodka & Apple Cider"
+        ]
+    },
+    "Sara": {
+        "Dislikes": [
+            
+        ],
+        "Favorite Mains": [
+            
+        ],
+        "Favorite Sweets": [
+            
+        ],
+        "Favorite Drinks": [
+            
+        ]
+    },
+    "Rebecca": {
+        "Dislikes": [
+            
+        ],
+        "Favorite Mains": [
+            
+        ],
+        "Favorite Sweets": [
+            
+        ],
+        "Favorite Drinks": [
+            
+        ]
+    },
+    "Mark": {
+        "Dislikes": [
+            
+        ],
+        "Favorite Mains": [
+            
+        ],
+        "Favorite Sweets": [
+            
+        ],
+        "Favorite Drinks": [
+            
+        ]
+    }
+}
