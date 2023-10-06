@@ -24,12 +24,32 @@ const notFound = (request, response) => {
 };
 
 // Send back the users object
-const getUsers = (request, response) => {
-  const resObj = {
+const getUsers = (request, response, params) => {
+  let resObj = {
     users,
   };
 
-  return respondJSON(request, response, 200, resObj);
+  // Return full object if no name is given
+  if (!params.name) {
+    return respondJSON(request, response, 200, resObj);
+  }
+  
+  // Return specific persons data if name is given
+  if(users[params.name]) {
+    resObj = {
+      [params.name]: users[params.name],
+    }
+    
+    return respondJSON(request, response, 200, resObj)
+  }
+
+  // Send 400 response code if there are invalid query parameters
+  resObj = {
+    message: "Invalid Query Parameter(s)",
+    id: "getUserInvalidParams"
+  }
+
+  return respondJSON(request, response, 400, resObj);
 };
 
 // Send the head for getUser request
@@ -61,16 +81,56 @@ const addUser = (request, response, body) => {
 
   // Check for each food field
   if (body.dislikes) { 
-    let dislikesArray = body.dislikes.split(',')
+    // Turn section into an array
+    let dislikesArray = body.dislikes.split(',');
+
+    // Get rid of any leading or trailing spaces
+    for (let i = 0; i < dislikesArray.length; i++) {
+      dislikesArray[i] = dislikesArray[i].trim();
+    }
+
+    // Add/update array inside of user
     users[body.name].dislikes = dislikesArray;
   }
     
-  if (body.mains)
-    users[body.name].mains = body.mains;
-  if (body.sweets)
-    users[body.name].sweets = body.sweets;
-  if (body.drinks)
-    users[body.name].sweets = body.drinks;
+  if (body.mains) {
+    // Turn section into an array
+    let mainsArray = body.mains.split(',');
+
+    // Get rid of any leading or trailing spaces
+    for (let i = 0; i < mainsArray.length; i++) {
+      mainsArray[i] = mainsArray[i].trim();
+    }
+
+    // Add/update array inside of user
+    users[body.name].mains = mainsArray;
+  }
+
+  if (body.sweets) {
+    // Turn section into an array
+    let sweetsArray = body.sweets.split(',');
+
+    // Get rid of any leading or trailing spaces
+    for (let i = 0; i < sweetsArray.length; i++) {
+      sweetsArray[i] = sweetsArray[i].trim();
+    }
+
+    // Add/update array inside of user
+    users[body.name].sweets = sweetsArray;
+  }
+
+  if (body.drinks) {
+    // Turn section into an array
+    let drinksArray = body.drinks.split(',');
+
+    // Get rid of any leading or trailing spaces
+    for (let i = 0; i < drinksArray.length; i++) {
+      drinksArray[i] = drinksArray[i].trim();
+    }
+
+    // Add/update array inside of user
+    users[body.name].drinks = drinksArray;
+  }
 
   // Send created response
   if (resCode === 201) {
