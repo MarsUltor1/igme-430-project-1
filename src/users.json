@@ -1,5 +1,6 @@
 {
     "Laura": {
+        "name": "Laura",
         "dislikes": [
             "Whipped Cream",
             "Avocados",
@@ -31,6 +32,7 @@
         ]
     },
     "Sara": {
+        "name": "Sara",
         "dislikes": [
             
         ],
@@ -45,6 +47,7 @@
         ]
     },
     "Rebecca": {
+        "name": "Rebecca",
         "dislikes": [
             
         ],
@@ -59,6 +62,7 @@
         ]
     },
     "Mark": {
+        "name": "Mark",
         "dislikes": [
             
         ],
