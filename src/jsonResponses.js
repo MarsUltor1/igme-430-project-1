@@ -33,21 +33,21 @@ const getUsers = (request, response, params) => {
   if (!params.name) {
     return respondJSON(request, response, 200, resObj);
   }
-  
+
   // Return specific persons data if name is given
-  if(users[params.name]) {
+  if (users[params.name]) {
     resObj = {
       [params.name]: users[params.name],
-    }
-    
-    return respondJSON(request, response, 200, resObj)
+    };
+
+    return respondJSON(request, response, 200, resObj);
   }
 
   // Send 400 response code if there are invalid query parameters
   resObj = {
-    message: "Invalid Query Parameter(s)",
-    id: "getUserInvalidParams"
-  }
+    message: 'Invalid Query Parameter(s)',
+    id: 'getUserInvalidParams',
+  };
 
   return respondJSON(request, response, 400, resObj);
 };
@@ -80,9 +80,9 @@ const addUser = (request, response, body) => {
   users[body.name].name = body.name;
 
   // Check for each food field
-  if (body.dislikes) { 
+  if (body.dislikes) {
     // Turn section into an array
-    let dislikesArray = body.dislikes.split(',');
+    const dislikesArray = body.dislikes.split(',');
 
     // Get rid of any leading or trailing spaces
     for (let i = 0; i < dislikesArray.length; i++) {
@@ -92,10 +92,10 @@ const addUser = (request, response, body) => {
     // Add/update array inside of user
     users[body.name].dislikes = dislikesArray;
   }
-    
+
   if (body.mains) {
     // Turn section into an array
-    let mainsArray = body.mains.split(',');
+    const mainsArray = body.mains.split(',');
 
     // Get rid of any leading or trailing spaces
     for (let i = 0; i < mainsArray.length; i++) {
@@ -108,7 +108,7 @@ const addUser = (request, response, body) => {
 
   if (body.sweets) {
     // Turn section into an array
-    let sweetsArray = body.sweets.split(',');
+    const sweetsArray = body.sweets.split(',');
 
     // Get rid of any leading or trailing spaces
     for (let i = 0; i < sweetsArray.length; i++) {
@@ -121,7 +121,7 @@ const addUser = (request, response, body) => {
 
   if (body.drinks) {
     // Turn section into an array
-    let drinksArray = body.drinks.split(',');
+    const drinksArray = body.drinks.split(',');
 
     // Get rid of any leading or trailing spaces
     for (let i = 0; i < drinksArray.length; i++) {

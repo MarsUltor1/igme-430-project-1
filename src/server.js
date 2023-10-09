@@ -60,7 +60,8 @@ const onRequest = (request, response) => {
     }
 
     // Handle GET and HEAD requests
-    return urlStruct[request.method][parsedUrl.pathname](request, response, query.parse(parsedUrl.query));
+    const params = query.parse(parsedUrl.query);
+    return urlStruct[request.method][parsedUrl.pathname](request, response, params);
   }
 
   return urlStruct[request.method].notFound(request, response); // Send 404 and maybe body
