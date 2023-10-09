@@ -60,17 +60,14 @@ const addUser = (request, response, body) => {
   users[body.name].name = body.name;
 
   // Check for each food field
-  if (body.dislikes) { 
-    let dislikesArray = body.dislikes.split(',')
+  if (body.dislikes) {
+    const dislikesArray = body.dislikes.split(',');
     users[body.name].dislikes = dislikesArray;
   }
-    
-  if (body.mains)
-    users[body.name].mains = body.mains;
-  if (body.sweets)
-    users[body.name].sweets = body.sweets;
-  if (body.drinks)
-    users[body.name].sweets = body.drinks;
+
+  if (body.mains) { users[body.name].mains = body.mains; }
+  if (body.sweets) { users[body.name].sweets = body.sweets; }
+  if (body.drinks) { users[body.name].sweets = body.drinks; }
 
   // Send created response
   if (resCode === 201) {

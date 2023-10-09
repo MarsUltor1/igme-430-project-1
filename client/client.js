@@ -57,10 +57,13 @@ const sendAddUserRequest = async (form) => {
     const url = form.getAttribute('action');
 
     const name = form.querySelector('#nameField').value;
-    const age = form.querySelector('#ageField').value;
+    const dislikes = form.querySelector('#dislikesField').value;
+    const mains = form.querySelector('#mainsField').value;
+    const sweets = form.querySelector('#sweetsField').value;
+    const drinks = form.querySelector('#drinksField').value;
 
     // Format form data
-    const formData = `name=${name}&age=${age}`;
+    const formData = `name=${name}&dislikes=${dislikes}&mains=${mains}&sweets=${sweets}&drinks=${drinks}`;
 
     // Set fetch options
     let options = {

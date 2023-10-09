@@ -14,20 +14,15 @@
     <form id="nameForm" action="/addUser" method="post">
       <label for="name">Name: </label>
       <input id="nameField" type="text" name="name" />
-      <label for="age">Age: </label>
-      <input id="ageField" type="number" name="age" min="0" max="100" step="1" />
+      <label for="dislikes">Disliked Foods: </label>
+      <input id="dislikesField" type="text" name="dislikes"/>
+      <label for="mains">Favorite Mains: </label>
+      <input id="mainsField" type="text" name="mains"/>
+      <label for="sweets">Favorite Sweets: </label>
+      <input id="sweetsField" type="text" name="sweets"/>
+      <label for="drinks">Favorite Drinks: </label>
+      <input id="drinksField" type="text" name="drinks"/>
       <input type="submit" value="Add User" />
-    </form>
-    <form id="userForm" action="/getUsers" method="get">
-      <select id='urlField'>
-        <option value='/getUsers'>/getUsers</option>
-        <option value='/notReal'>/notReal</option>
-      </select>
-      <select id="methodSelect">
-        <option value="get">GET</option>
-        <option value="head">HEAD</option>
-      </select>
-      <input type="submit" value="Get User" />
     </form>
   </section>
   <section id="content">
