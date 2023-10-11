@@ -3,14 +3,17 @@ const url = require('url');
 const query = require('querystring');
 const jsonHandler = require('./jsonResponses.js');
 const htmlHandler = require('./htmlResponses.js');
+const jsHandler = require('./jsResponses.js');
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
 const urlStruct = {
   GET: {
     '/': htmlHandler.getIndex,
+    '/myPage': htmlHandler.getMyPage,
     '/style.css': htmlHandler.getCSS,
-    '/bundle.js': htmlHandler.getBundle,
+    '/indexbundle.js': jsHandler.getIndex,
+    '/mypagebundle.js': jsHandler.getMyPage,
     '/getUsers': jsonHandler.getUsers,
     notFound: jsonHandler.notFound,
   },

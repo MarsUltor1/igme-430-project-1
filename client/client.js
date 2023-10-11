@@ -1,3 +1,5 @@
+const login = require('./login.js');
+
 const handleResponse = async (response, parseJSON) => {
     const content = document.querySelector('#content');
 
@@ -61,6 +63,13 @@ const sendAddUserRequest = async (form) => {
     const mains = form.querySelector('#mainsField').value;
     const sweets = form.querySelector('#sweetsField').value;
     const drinks = form.querySelector('#drinksField').value;
+
+    // Make sure no unallowed characters are present
+    name = name.replaceAll('&', '').replaceAll('=', '');
+    dislikes = dislikes.replaceAll('&', '').replaceAll('=', '');
+    mains = mains.replaceAll('&', '').replaceAll('=', '');
+    sweets = sweets.replaceAll('&', '').replaceAll('=', '');
+    drinks = drinks.replaceAll('&', '').replaceAll('=', '');
 
     // Format form data
     const formData = `name=${name}&dislikes=${dislikes}&mains=${mains}&sweets=${sweets}&drinks=${drinks}`;
