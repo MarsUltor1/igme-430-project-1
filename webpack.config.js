@@ -3,7 +3,8 @@ const path = require('path');
 module.exports = {
     entry: {
         index: './client/client.js',
-        mypage: './client/myPage.js'
+        mypage: './client/myPage.js',
+        loginpage: './client/loginPage.js'
     },
     mode: 'development',
     output: {

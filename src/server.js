@@ -11,9 +11,11 @@ const urlStruct = {
   GET: {
     '/': htmlHandler.getIndex,
     '/myPage': htmlHandler.getMyPage,
+    '/login': htmlHandler.getLogin,
     '/style.css': htmlHandler.getCSS,
     '/indexbundle.js': jsHandler.getIndex,
     '/mypagebundle.js': jsHandler.getMyPage,
+    '/loginpagebundle.js': jsHandler.getLoginPage,
     '/getUsers': jsonHandler.getUsers,
     notFound: jsonHandler.notFound,
   },

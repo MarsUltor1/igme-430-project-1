@@ -2,6 +2,7 @@ const fs = require('fs');
 
 const userJson = fs.readFileSync(`${__dirname}/users.json`); // Read in "persistent" user data from file
 const users = JSON.parse(userJson); // Hold created users while server is running
+const user = { name: "" };
 
 const respondJSON = (request, response, status, object) => {
   response.writeHead(status, 'application/json');

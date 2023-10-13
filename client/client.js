@@ -1,5 +1,3 @@
-const login = require('./login.js');
-
 const handleResponse = async (response, parseJSON) => {
     const content = document.querySelector('#content');
 

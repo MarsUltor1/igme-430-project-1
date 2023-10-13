@@ -1,4 +1,4 @@
-const login = require('./login.js');
+//const login = require('./login.js');
 
 const handleResponse = async (response) => {
     const content = document.querySelector('#content');
@@ -39,11 +39,11 @@ const handleResponse = async (response) => {
     let obj = await response.json();
     console.log(obj);
 
-    message.innerText = `Name: ${obj[login.name].name}\n
-        Dislikes: ${obj[login.name].dislikes}\n
-        Favorite Mains: ${obj[login.name].mains}\n
-        Favorite Sweets: ${obj[login.name].sweets}\n
-        Favorite Drinks: ${obj[login.name].drinks}`;
+    //message.innerText = `Name: ${obj[login.name].name}\n
+    //    Dislikes: ${obj[login.name].dislikes}\n
+    //    Favorite Mains: ${obj[login.name].mains}\n
+    //    Favorite Sweets: ${obj[login.name].sweets}\n
+    //    Favorite Drinks: ${obj[login.name].drinks}`;
 
 
     // Add message to content
@@ -69,12 +69,12 @@ const sendGetUserRequest = async (name) => {
 
 const init = () => {
     // Check for user logged in
-    if (!login.name) {
-        window.location.href = "https://localhost:3000/";
-    }
+    //if (!login.name) {
+    //    window.location.href = "./../login";
+    //}
 
     // Get user info
-    sendGetUserRequest(login.name);
+    //sendGetUserRequest(login.name);
 }
 
 window.onload = init;
