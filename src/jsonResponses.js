@@ -2,7 +2,7 @@ const fs = require('fs');
 
 const userJson = fs.readFileSync(`${__dirname}/users.json`); // Read in "persistent" user data from file
 const users = JSON.parse(userJson); // Hold created users while server is running
-const user = { name: "" };
+const user = { name: '' };
 
 const respondJSON = (request, response, status, object) => {
   response.writeHead(status, 'application/json');
@@ -143,9 +143,75 @@ const addUser = (request, response, body) => {
   return respondJSONMeta(request, response, resCode);
 };
 
+// Send object for getUserName request
+const getUserName = (request, response) => {
+  const resObj = {
+    message: 'No username found',
+  };
+
+  // Check if a username exists
+  if (!user.name) {
+    // Add id to response object
+    resObj.id = 'userNameNotFound';
+
+    // Send error message
+    return respondJSON(request, response, 404, resObj);
+  }
+
+  // Set response object message and name
+  resObj.message = 'UserName set';
+  resObj.name = user.name;
+
+  // Send the username object
+  return respondJSON(request, response, 200, resObj);
+};
+
+// Send head for getUserName request
+const getUserNameMeta = (request, response) => respondJSONMeta(request, response, 200);
+
+// Set the user's name object
+const setUserName = (request, response, body) => {
+  const resObj = {
+    message: 'User requires name.',
+  };
+
+  if (!body.name) {
+    // Set error id
+    resObj.id = 'setUserNameMissingName';
+
+    // Send error message
+    return respondJSON(request, response, 400, resObj);
+  }
+
+  // Set response code
+  let resCode = 204;
+
+  // Check if name exists and create user if not
+  if (!users[body.name]) {
+    resCode = 201;
+    users[body.name] = {
+      name: body.name,
+    };
+  }
+
+  // Set user object's name
+  user.name = body.name;
+
+  // Send response for sign up or log in
+  if (resCode === 201) {
+    resObj.message = 'Sign up Successful';
+    return respondJSON(request, response, resCode, resObj);
+  }
+
+  return respondJSONMeta(request, response, resCode);
+};
+
 module.exports = {
   getUsers,
   getUsersMeta,
   addUser,
   notFound,
+  getUserName,
+  getUserNameMeta,
+  setUserName,
 };

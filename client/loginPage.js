@@ -1,19 +1,71 @@
-const setUsername = (form) => {
+let userName = ''
+
+const handleResponse = (response) => {
+    // Check for error code
+    if (response.status === 400) {
+        // Get/Create elements
+        const content = document.querySelector('#content');
+        const message = document.createElement('h1');
+
+        // Set text
+        message.innerText = `Unable to Log In Please try Again`;
+
+        // Add text to section
+        content.innerHTML = '';
+        content.appendChild(message);
+    }
+    // Check if user was created or not
+    else if (response.status === 204) {
+        // Get/Create elements
+        const content = document.querySelector('#content');
+        const message = document.createElement('h1');
+
+        // Set text
+        message.innerText = `Logged In as: ${userName}`;
+
+        // Add text to section
+        content.innerHTML = '';
+        content.appendChild(message);
+    }
+    else {
+        // Get/Create elements
+        const content = document.querySelector('#content');
+        const message = document.createElement('h1');
+
+        // Set text
+        message.innerText = `Signed Up As: ${userName}`;
+
+        // Add text to section
+        content.innerHTML = '';
+        content.appendChild(message);
+    }
+
+
+    
+}
+
+const setUsername = async (form) => {
     // Set name
-    const userName = form.querySelector('#nameField').value;
+    userName = form.querySelector('#nameField').value;
 
-    // Update text in content
+    // Make sure no unallowed characters are present
+    userName = userName.replaceAll('&', '').replaceAll('=', '');
 
-    // Get/Create elements
-    const content = document.querySelector('#content');
-    const message = document.createElement('h1');
+    // Format form data
+    const formData = `name=${userName}`;
 
-    // Set text
-    message.innerText = `Logged In as: ${userName}`;
+    // Setup request options
+    let options = {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Accept': 'application/json',
+        },
+        body: formData,
+    }
 
-    // Add text to section
-    content.innerHTML = '';
-    content.appendChild(message);
+    // Send setUserName request
+    return handleResponse(await fetch('/setUserName', options));
 }
 
 const init = () => {

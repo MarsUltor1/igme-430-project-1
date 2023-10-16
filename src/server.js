@@ -17,14 +17,17 @@ const urlStruct = {
     '/mypagebundle.js': jsHandler.getMyPage,
     '/loginpagebundle.js': jsHandler.getLoginPage,
     '/getUsers': jsonHandler.getUsers,
+    '/getUserName': jsonHandler.getUserName,
     notFound: jsonHandler.notFound,
   },
   HEAD: {
     '/getUsers': jsonHandler.getUsersMeta,
+    '/getUserName': jsonHandler.getUserNameMeta,
     notFound: jsonHandler.notFound,
   },
   POST: {
     '/addUser': jsonHandler.addUser,
+    '/setUserName': jsonHandler.setUserName,
     notFound: jsonHandler.notFound,
   },
 };

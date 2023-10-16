@@ -1,4 +1,4 @@
-//const login = require('./login.js');
+let userName = '';
 
 const handleResponse = async (response) => {
     const content = document.querySelector('#content');
@@ -39,11 +39,11 @@ const handleResponse = async (response) => {
     let obj = await response.json();
     console.log(obj);
 
-    //message.innerText = `Name: ${obj[login.name].name}\n
-    //    Dislikes: ${obj[login.name].dislikes}\n
-    //    Favorite Mains: ${obj[login.name].mains}\n
-    //    Favorite Sweets: ${obj[login.name].sweets}\n
-    //    Favorite Drinks: ${obj[login.name].drinks}`;
+    message.innerText = `Name: ${obj[userName].name}\n
+        Dislikes: ${obj[userName].dislikes}\n
+        Favorite Mains: ${obj[userName].mains}\n
+        Favorite Sweets: ${obj[userName].sweets}\n
+        Favorite Drinks: ${obj[userName].drinks}`;
 
 
     // Add message to content
@@ -67,14 +67,28 @@ const sendGetUserRequest = async (name) => {
     return handleResponse(await fetch(url, options))
 }
 
-const init = () => {
-    // Check for user logged in
-    //if (!login.name) {
-    //    window.location.href = "./../login";
-    //}
+const handleUserNameResponse = async (response) => {
+    // Check for error code
+    if (response.status === 404) {
+        window.location.href = "./../login";
+    }
+
+    // Set username and update form
+    const resObj = await response.json();
+    userName = resObj.name;
 
     // Get user info
-    //sendGetUserRequest(login.name);
+    sendGetUserRequest(userName);
+}
+
+const init = async() => {
+    // get userName from server
+    handleUserNameResponse(await fetch('/getUserName', {
+        method: 'get',
+        headers: {
+            'Accept': 'application/json',
+        },
+    }));
 }
 
 window.onload = init;

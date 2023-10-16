@@ -1,11 +1,9 @@
 const fs = require('fs'); // pull in the file system module
-const { request } = require('http');
 
 const index = fs.readFileSync(`${__dirname}/../hosted/client.html`);
 const myPage = fs.readFileSync(`${__dirname}/../hosted/my-page.html`);
-const loginPage = fs.readFileSync(`${__dirname}/../hosted/login.html`)
+const loginPage = fs.readFileSync(`${__dirname}/../hosted/login.html`);
 const css = fs.readFileSync(`${__dirname}/../hosted/style.css`);
-
 
 const serveFile = (response, file, contentType) => {
   response.writeHead(200, { 'Content-Type': contentType });
@@ -19,11 +17,11 @@ const getIndex = (request, response) => {
 
 const getMyPage = (request, response) => {
   serveFile(response, myPage, 'text/html');
-}
+};
 
 const getLogin = (request, response) => {
   serveFile(response, loginPage, 'text/html');
-}
+};
 
 const getCSS = (request, response) => {
   serveFile(response, css, 'text/css');

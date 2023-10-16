@@ -1,3 +1,5 @@
+let userName = '';
+
 const handleResponse = async (response, parseJSON) => {
     const content = document.querySelector('#content');
 
@@ -103,9 +105,31 @@ const sendGetUserRequest = async (form) => {
     return handleResponse(await fetch(url, options), method === 'get')
 }
 
-const init = () => {
+const handleUserNameResponse = async (response) => {
+    // Check for error code
+    if (response.status === 404) {
+        window.location.href = "./../login";
+    }
+
+    // Set username and update form
+    const nameField = document.querySelector('#nameField');
+
+    const resObj = await response.json();
+    userName = resObj.name;
+    nameField.value = userName;
+}
+
+const init = async () => {
+    // get userName from server
+    handleUserNameResponse(await fetch('/getUserName', {
+        method: 'get',
+        headers: {
+            'Accept': 'application/json',
+        },
+    }));
+
+    // Setup handler for add user form
     const addUserForm = document.querySelector('#nameForm');
-    const getUserForm = document.querySelector('#userForm');
 
     const addUser = (e) => {
         e.preventDefault();
@@ -113,14 +137,7 @@ const init = () => {
         return false;
     }
 
-    const getUser = (e) => {
-        e.preventDefault();
-        sendGetUserRequest(getUserForm);
-        return false;
-    }
-
     addUserForm.addEventListener('submit', addUser);
-    getUserForm.addEventListener('submit', getUser);
 }
 
 window.onload = init;
