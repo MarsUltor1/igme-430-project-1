@@ -34,28 +34,48 @@
     "Sara": {
         "name": "Sara",
         "dislikes": [
-            
+            "Sour cream and onion chips",
+            "Potato chips",
+            "Jello",
+            "Pork",
+            "Canned artichoke hearts",
+            "Cinnamon candy",
+            "Dill"
         ],
         "mains": [
-            
+            "Dumplings",
+            "Sushi",
+            "Noodle soups (eastern asian)"
         ],
         "sweets": [
-            
+            "Baclava",
+            "Zhongzhi",
+            "Canolli"
         ],
         "drinks": [
-            
+            "Ulong tea",
+            "Horchata",
+            "Sweat tea (sugar free)"
         ]
     },
     "Rebecca": {
         "name": "Rebecca",
         "dislikes": [
-            
+            "Ginger",
+            "Cottage cheese",
+            "Savory Alcohol",
+            "Licorice",
+            "Oatmeal"
         ],
         "mains": [
-            
+            "Rotisserie Chicken",
+            "Mutar Paneer",
+            "Blue Cheese Burgers"
         ],
         "sweets": [
-            
+            "Pie",
+            "Mango",
+            "Chocolate chip Cookies"
         ],
         "drinks": [
             
@@ -64,16 +84,30 @@
     "Mark": {
         "name": "Mark",
         "dislikes": [
-            
+            "Mushrooms",
+            "Shrimp",
+            "Mussles / Oysters",
+            "Alcohol",
+            "Super Spicy Foof",
+            "Water chestnuts and mini corns",
+            "Cilantro",
+            "Asparagus",
+            "Black Licorice"
         ],
         "mains": [
-            
+            "Cheesy pasta",
+            "Dumplings",
+            "Sushi"
         ],
         "sweets": [
-            
+            "Baclava",
+            "Cheesecake",
+            "Pie"
         ],
         "drinks": [
-            
+            "Mango lassi",
+            "Horchata",
+            "Soda"
         ]
     }
 }
