@@ -2,15 +2,65 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User's Food Interests</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User's Food Interests</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 
-    <script src="allusersbundle.js"></script>
+  <script src="allusersbundle.js"></script>
 </head>
 
 <body>
-    
+  <!-- Page Navbar -->
+  <nav class="navbar is-link has-shadow">
+    <div class="navbar-menu is-active">
+      <!-- Left side of navbar-->
+      <div class="navbar-start">
+        <!-- Home page (current page)-->
+        <a href="/" class="navbar-item">
+          Home
+        </a>
+
+        <!-- User page -->
+        <a href="/myPage" class="navbar-item">
+          My Info
+        </a>
+
+        <!-- All users page-->
+        <a class="navbar-item">
+          All Users
+        </a>
+      </div>
+
+      <!-- Right side of navbar-->
+      <div class="navbar-end">
+        <div class="buttons pr-2">
+          <a href="/login" class="button is-light">
+            Log In
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- End of: Page Navbar -->
+
+  <div class="container mt-4" id="content">
+    <table class="table is-bordered is-striped is-fullwidth">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Dislikes</th>
+          <th>Favorite Mains</th>
+          <th>Favorite Sweets</th>
+          <th>Favorite Drinks</th>
+        </tr>
+      </thead>
+      <tbody id="users">
+
+      </tbody>
+    </table>
+  </div>
 </body>
 
 </html>

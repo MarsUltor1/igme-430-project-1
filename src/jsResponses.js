@@ -1,5 +1,4 @@
 const fs = require('fs');
-const { request } = require('http');
 
 const indexBundle = fs.readFileSync(`${__dirname}/../hosted/indexbundle.js`);
 const myPageBundle = fs.readFileSync(`${__dirname}/../hosted/mypagebundle.js`);
@@ -26,7 +25,7 @@ const getLoginPage = (request, response) => {
 
 const getAllUsers = (request, response) => {
   serveFile(response, allUsersBundle, 'text/js');
-}
+};
 
 module.exports = {
   getIndex,

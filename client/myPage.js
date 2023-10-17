@@ -1,53 +1,39 @@
 let userName = '';
 
 const handleResponse = async (response) => {
-    const content = document.querySelector('#content');
-
-    // create elements to hold title and message
-    const title = document.createElement('h1');
-    const message = document.createElement('p');
-
-    // Set title based on response status code
-    switch (response.status) {
-        case 200:
-            title.innerText = 'Success';
-            break;
-        case 201:
-            title.innerText = 'Created';
-            break;
-        case 204:
-            title.innerText = 'Updated (No Content)';
-            break;
-        case 400:
-            title.innerText = 'Bad Request';
-            break;
-        case 404:
-            title.innerText = 'Not Found';
-            break;
-        default:
-            title.innerText = 'Error: Not Implemented by Client';
-            break;
-    }
-
-    // Clear content section and add title
-    content.innerHTML = "";
-    content.appendChild(title);
-
-    // Set body
+    // Get each of the table sections
+    const name = document.querySelector('#name');
+    const dislikes = document.querySelector('#dislikes');
+    const mains = document.querySelector('#mains');
+    const sweets = document.querySelector('#sweets');
+    const drinks = document.querySelector('#drinks');
 
     // Get body json
     let obj = await response.json();
     console.log(obj);
 
-    message.innerText = `Name: ${obj[userName].name}\n
-        Dislikes: ${obj[userName].dislikes}\n
-        Favorite Mains: ${obj[userName].mains}\n
-        Favorite Sweets: ${obj[userName].sweets}\n
-        Favorite Drinks: ${obj[userName].drinks}`;
+    // Set the text of each section
+    name.innerText = obj[userName].name;
 
+    dislikes.innerText =  "";
+    for (let food of obj[userName].dislikes) {
+        dislikes.innerText += ` ${food},`;
+    }
 
-    // Add message to content
-    content.appendChild(message);
+    mains.innerText =  "";
+    for (let food of obj[userName].mains) {
+        mains.innerText += ` ${food},`;
+    }
+
+    sweets.innerText =  "";
+    for (let food of obj[userName].sweets) {
+        sweets.innerText += ` ${food},`;
+    }
+
+    drinks.innerText =  "";
+    for (let food of obj[userName].drinks) {
+        drinks.innerText += ` ${food},`;
+    }
 }
 
 const sendGetUserRequest = async (name) => {

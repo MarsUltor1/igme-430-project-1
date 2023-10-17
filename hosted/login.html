@@ -5,19 +5,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 
     <script src="loginpagebundle.js"></script>
 </head>
 
 <body>
-    <form id="loginForm" action="/addUser" method="post">
-        <label for="name">User Name: </label>
-        <input id="nameField" type="text" name="name" />
-        <input type="submit" value="Login" />
-    </form>
-    <section id="content">
+    <!-- Page Navbar -->
+    <nav class="navbar is-link has-shadow">
+        <div class="navbar-menu is-active">
+            <!-- Left side of navbar-->
+            <div class="navbar-start">
+                <!-- Home page (current page)-->
+                <a href="/" class="navbar-item">
+                    Home
+                </a>
+
+                <!-- User page -->
+                <a href="/myPage" class="navbar-item">
+                    My Info
+                </a>
+
+                <!-- All users page-->
+                <a href="/allUsers" class="navbar-item">
+                    All Users
+                </a>
+            </div>
+
+            <!-- Right side of navbar-->
+            <div class="navbar-end">
+                <div class="buttons pr-2">
+                    <a class="button is-light">
+                        Log In
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- End of: Page Navbar -->
+
+    <!-- Login Form -->
+    <div class="container mt-4">
+        <form id="loginForm" action="/setUserName" method="post">
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">User Name: </label>
+                </div>
+                <div class="field-body ">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input is-normal" id="nameField" type="text" name="name" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field is-grouped is-grouped-centered">
+                <div class="control">
+                    <input class="button is-link is-normal" type="submit" value="Log In"></button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- End of: Login Form -->
+
+    <!-- Show log in status -->
+    <div class="container mt-4" id="content">
         <h1>Not Logged In</h1>
-    </section>
+    </div>
 </body>
 
 </html>

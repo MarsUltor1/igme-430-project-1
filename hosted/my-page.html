@@ -1,14 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Food Interests</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 
     <script src="mypagebundle.js"></script>
 </head>
+
 <body>
-    <section id="content">
-    </section>
+    <!-- Page Navbar -->
+    <nav class="navbar is-link has-shadow">
+        <div class="navbar-menu is-active">
+            <!-- Left side of navbar-->
+            <div class="navbar-start">
+                <!-- Home page (current page)-->
+                <a href="/" class="navbar-item">
+                    Home
+                </a>
+
+                <!-- User page -->
+                <a class="navbar-item">
+                    My Info
+                </a>
+
+                <!-- All users page-->
+                <a href="/allUsers" class="navbar-item">
+                    All Users
+                </a>
+            </div>
+
+            <!-- Right side of navbar-->
+            <div class="navbar-end">
+                <div class="buttons pr-2">
+                    <a href="/login" class="button is-light">
+                        Log In
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- End of: Page Navbar -->
+
+    <!-- Information Table -->
+    <div class="container mt-4" id="content">
+        <table class="table is-bordered is-striped is-fullwidth">
+            <tbody>
+                <tr>
+                    <th>Name</th>
+                    <td id="name"></td>
+                </tr>
+                <tr>
+                    <th>Disliked Food</th>
+                    <td id="dislikes"></td>
+                </tr>
+                <tr>
+                    <th>Favorite Mains</th>
+                    <td id="mains"></td>
+                </tr>
+                <tr>
+                    <th>Favorite Sweets</th>
+                    <td id="sweets"></td>
+                </tr>
+                <tr>
+                    <th>Favorite Drinks</th>
+                    <td id="drinks"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- End of: Information Table -->
 </body>
+
 </html>

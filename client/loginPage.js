@@ -1,6 +1,6 @@
 let userName = ''
 
-const handleResponse = (response) => {
+const handleResponse = async (response) => {
     // Check for error code
     if (response.status === 400) {
         // Get/Create elements
@@ -41,11 +41,12 @@ const handleResponse = (response) => {
     }
 
 
-    
+
 }
 
 const setUsername = async (form) => {
     // Set name
+    const url = form.getAttribute('action');
     userName = form.querySelector('#nameField').value;
 
     // Make sure no unallowed characters are present
@@ -65,11 +66,44 @@ const setUsername = async (form) => {
     }
 
     // Send setUserName request
-    return handleResponse(await fetch('/setUserName', options));
+    return handleResponse(await fetch(url, options));
 }
 
-const init = () => {
+const handleUserNameResponse = async (response) => {
+    // Check for error code
+    if (response.status === 404) {
+        return;
+    }
+
+    // Set username and update form
+    const resObj = await response.json();
+    userName = resObj.name;
+
+    // If user already logged in set message
+    if (userName) {
+        // Get/Create elements
+        const content = document.querySelector('#content');
+        const nameField = document.querySelector('#nameField');
+        const message = document.createElement('h1');
+
+        // Set text
+        message.innerText = `Logged In as: ${userName}`;
+        nameField.value = userName;
+
+        // Add text to section
+        content.innerHTML = '';
+        content.appendChild(message);
+    }
+}
+
+const init = async () => {
     // Check if someone is already logged in
+    handleUserNameResponse(await fetch('/getUserName', {
+        method: 'get',
+        headers: {
+            'Accept': 'application/json',
+        },
+    }));
 
     // Setup login handler
     const loginForm = document.querySelector('#loginForm');

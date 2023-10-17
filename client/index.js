@@ -1,68 +1,29 @@
 let userName = '';
 
-const handleResponse = async (response, parseJSON) => {
+const handleResponse = async (response) => {
     const content = document.querySelector('#content');
 
-    // create elements to hold title and message
+    // create element to hold response text
     const title = document.createElement('h1');
-    const message = document.createElement('p');
 
-    // Set title based on response status code
-    switch (response.status) {
-        case 200:
-            title.innerText = 'Success';
-            break;
-        case 201:
-            title.innerText = 'Created';
-            break;
-        case 204:
-            title.innerText = 'Updated (No Content)';
-            break;
-        case 400:
-            title.innerText = 'Bad Request';
-            break;
-        case 404:
-            title.innerText = 'Not Found';
-            break;
-        default:
-            title.innerText = 'Error: Not Implemented by Client';
-            break;
+    // Set response text if there wasn't an error
+    if (response.status === 204) {
+        title.innerText = 'User Information Updated';
     }
 
-    // Clear content section and add title
     content.innerHTML = "";
     content.appendChild(title);
-
-    // Set body if it has one
-    if (parseJSON && response.status !== 204) {
-        // Get body json
-        let obj = await response.json();
-        console.log(obj);
-
-        // Check if it has a message
-        if (obj.message) {
-            message.innerText = `Message: ${obj.message}`;
-        }
-        // Check if it has users obj
-        else if (obj.users) {
-            message.innerText = JSON.stringify(obj.users);
-        }
-
-
-        // Add message to content
-        content.appendChild(message);
-    }
 }
 
 const sendAddUserRequest = async (form) => {
     // Get url and fields
     const url = form.getAttribute('action');
 
-    const name = form.querySelector('#nameField').value;
-    const dislikes = form.querySelector('#dislikesField').value;
-    const mains = form.querySelector('#mainsField').value;
-    const sweets = form.querySelector('#sweetsField').value;
-    const drinks = form.querySelector('#drinksField').value;
+    let name = form.querySelector('#nameField').value;
+    let dislikes = form.querySelector('#dislikesField').value;
+    let mains = form.querySelector('#mainsField').value;
+    let sweets = form.querySelector('#sweetsField').value;
+    let drinks = form.querySelector('#drinksField').value;
 
     // Make sure no unallowed characters are present
     name = name.replaceAll('&', '').replaceAll('=', '');
@@ -85,24 +46,7 @@ const sendAddUserRequest = async (form) => {
     }
 
     // Send fetch request into response handler
-    return handleResponse(await fetch(url, options), true)
-}
-
-const sendGetUserRequest = async (form) => {
-    // Get method and url
-    const url = form.querySelector('#urlField').value;
-    const method = form.querySelector('#methodSelect').value;
-
-    // Set fetch options
-    let options = {
-        method,
-        headers: {
-            'Accept': 'application/json',
-        },
-    }
-
-    // Send fetch request into response handler
-    return handleResponse(await fetch(url, options), method === 'get')
+    return handleResponse(await fetch(url, options))
 }
 
 const handleUserNameResponse = async (response) => {
@@ -129,7 +73,7 @@ const init = async () => {
     }));
 
     // Setup handler for add user form
-    const addUserForm = document.querySelector('#nameForm');
+    const addUserForm = document.querySelector('#infoForm');
 
     const addUser = (e) => {
         e.preventDefault();
